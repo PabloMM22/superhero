@@ -12,18 +12,15 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
-import org.mapstruct.factory.Mappers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.Spy;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.pablo.superhero.model.dto.SuperheroDTO;
 import com.pablo.superhero.model.entity.Superhero;
-import com.pablo.superhero.model.mapper.SuperheroMapper;
 import com.pablo.superhero.repository.SuperheroRepository;
 import com.pablo.superhero.service.impl.SuperheroServiceImpl;
 
@@ -35,9 +32,6 @@ public class SuperheroServiceTests {
 
 	@Mock
 	private SuperheroRepository superheroRepository;
-
-	@Spy
-	private final SuperheroMapper superheroeMapper = Mappers.getMapper(SuperheroMapper.class);
 
 	@Test
 	public void testFindAll() {
