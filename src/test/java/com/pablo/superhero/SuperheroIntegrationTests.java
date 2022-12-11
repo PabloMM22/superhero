@@ -76,7 +76,7 @@ public class SuperheroIntegrationTests {
 
 	@WithUserDetails()
 	@Test
-	void buscar_should_return_superhero() throws Exception {
+	void search_should_return_superhero() throws Exception {
 		mockMvc.perform(get("/superhero/searchByName/{query}", "Spiderman"))
 			.andExpect(status().isOk())
 			.andExpect(jsonPath("$").isNotEmpty());
