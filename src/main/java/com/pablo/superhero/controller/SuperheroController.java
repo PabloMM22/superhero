@@ -3,7 +3,6 @@ package com.pablo.superhero.controller;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,13 +25,12 @@ import lombok.AllArgsConstructor;
 @RestController
 @RequestMapping("/superhero")
 @AllArgsConstructor
-@Component
 public class SuperheroController {
 
 	private final SuperheroService superheroService;
 
 	@TrackExecutionTime
-	@GetMapping("/getAll")
+	@GetMapping("/")
 	public ResponseEntity<List<SuperheroDTO>> getAll() {
 		return ResponseEntity.ok(superheroService.findAll());
 	}

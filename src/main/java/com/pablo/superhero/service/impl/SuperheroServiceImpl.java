@@ -40,10 +40,8 @@ public class SuperheroServiceImpl implements SuperheroService {
 
 	@Override
 	public SuperheroDTO findById(Long id) {
-		Optional<Superhero> result = superheroRepository.findById(id);
-		if (result.isEmpty()) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, NOT_FOUND_MESSAGE);
-		}
+		Optional<Superhero> result = Optional.ofNullable(superheroRepository.findById(id).orElseThrow(() ->  new ResponseStatusException(HttpStatus.NOT_FOUND, NOT_FOUND_MESSAGE)));
+		
 		return superheroMapper.superheroToSuperheroDTO(result.get());
 	}
 
@@ -59,6 +57,7 @@ public class SuperheroServiceImpl implements SuperheroService {
 		superheroRepository.save(dbEntity);
 	}
 
+	@CachePut(cacheNames="headers", key="#superhero.id")
 	@Override
 	public void delete(Long id) {
 		if (!superheroRepository.existsById(id)) {
